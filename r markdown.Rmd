@@ -1,28 +1,35 @@
 ---
-title: '"Basic Plots"'
+title: "Basic Plots"
+author: "Jeff Goldsmith"
+date: 2019-09-10
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setup, include = FALSE}
+library(tidyverse)
 ```
 
-## R Markdown
+The purpose of this file is to present a couple of basic plots using `ggplot`.
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+First we create a dataframe containing variables for our plots.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+```{r df_create}
+set.seed(1234)
 
-```{r cars}
-summary(cars)
+plot_df = tibble(
+  x = rnorm(1000, sd = .5),
+  y = 1 + 2 * x + rnorm(1000)
+)
 ```
 
-## Including Plots
+First we show a histogram of the `x` variable.
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r x_hist}
+ggplot(plot_df, aes(x = x)) + geom_histogram()
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Next we show a scatterplot of `y` vs `x`. 
+
+```{r yx_scatter}
+ggplot(plot_df, aes(x = x, y = y)) + geom_point()
+```
