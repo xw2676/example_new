@@ -34,3 +34,4 @@ The "False" of the logical vector became "0", the "TRUE" of the logical vector b
 as.numeric(vec_logical) * vec_numeric
 as.factor(vec_logical) * vec_numeric
 as.numeric(as.factor(vec_logical)) * vec_numeric
+```
